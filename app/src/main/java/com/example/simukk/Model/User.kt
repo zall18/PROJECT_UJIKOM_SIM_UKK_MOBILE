@@ -10,5 +10,7 @@ data class User(
     val role: String,
     val is_active: Int,
     val created_at: String,
-    val updated_at: String
+    val updated_at: String,
+    val assessor: Assessor,
+    val student: Student
 )

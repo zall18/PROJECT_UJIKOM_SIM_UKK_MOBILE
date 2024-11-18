@@ -1,6 +1,8 @@
 package com.example.simukk
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
@@ -17,6 +19,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var session: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         var login: AppCompatButton = findViewById(R.id.button_login)
         var email: EditText = findViewById(R.id.email_input)
         var password: EditText = findViewById(R.id.password_input)
+        session = getSharedPreferences("session", Context.MODE_PRIVATE)
+        var editor = session.edit()
 
         login.setOnClickListener {
             if (email.text.isNullOrEmpty())
@@ -48,7 +55,14 @@ class MainActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful){
                             Log.d("Login Response", "onResponse: " + response.body())
-                            startActivity(Intent(applicationContext ,BottomNavActivity::class.java))
+                            var body = response.body()
+                            Toast.makeText(applicationContext, "Success to login!", Toast.LENGTH_SHORT).show()
+                            editor.putString("token", body?.token.toString())
+                            editor.apply()
+
+                            var intent = Intent(applicationContext ,BottomNavActivity::class.java)
+                            intent.putExtra("index", "0")
+                            startActivity(intent)
                         }else{
                             Toast.makeText(applicationContext, "Username and password not match", Toast.LENGTH_SHORT).show()
                         }
