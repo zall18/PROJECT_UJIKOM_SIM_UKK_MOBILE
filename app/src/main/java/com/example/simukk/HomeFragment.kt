@@ -35,7 +35,10 @@ class HomeFragment : Fragment() {
 
         session = requireContext().getSharedPreferences("session", Context.MODE_PRIVATE)
         val token = session.getString("token", "")
-        var competency_count: TextView = view.findViewById(R.id.competency_count)
+        val competencyCount: TextView = view.findViewById(R.id.home_competency_count)
+        val competitorCount: TextView = view.findViewById(R.id.home_compe)
+        val studentActive: TextView = view.findViewById(R.id.home_student)
+        val avg: TextView = view.findViewById(R.id.home_avg)
 
         RetrofitClient.instance.assessorHome("Bearer $token").enqueue(object :
             Callback<AssessorHomeResponse>{
@@ -48,7 +51,11 @@ class HomeFragment : Fragment() {
 
                 if (response.isSuccessful)
                 {
-                    competency_count.text = data?.competency_count.toString()
+                    competencyCount.text = data?.competency_count.toString()
+                    competitorCount.text = data?.competitor_count.toString()
+                    studentActive.text = data?.student_active.toString()
+                    avg.text = data?.avg_last_score.toString()
+
                 }
             }
 
