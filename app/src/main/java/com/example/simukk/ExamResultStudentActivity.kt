@@ -13,6 +13,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.simukk.Adapter.ExamResultAdapter
 import com.example.simukk.Response.ExamResultResponse
 import org.w3c.dom.Text
 import retrofit2.Call
@@ -33,7 +36,6 @@ class ExamResultStudentActivity : AppCompatActivity() {
             insets
         }
 
-        val tableLayout = findViewById<TableLayout>(R.id.tableLayout)
         session = getSharedPreferences("session", Context.MODE_PRIVATE)
         val token = session.getString("token", "")
         val standard_id = intent.getStringExtra("standard_id")
@@ -56,35 +58,11 @@ class ExamResultStudentActivity : AppCompatActivity() {
                         val data = response.body()?.exam_result
                         unit_title.text = response.body()?.unit_title;
                         if (data != null) {
-                            // Loop setiap item di data
-                            for ((_, exam) in data) {
-                                val row = TableRow(this@ExamResultStudentActivity)
+                            val examList = data.values.toList()
 
-                                // Kolom Nama
-                                val nameText = TextView(this@ExamResultStudentActivity)
-                                nameText.text = exam.student_name
-                                nameText.setPadding(8, 8, 8, 8)
-                                nameText.setBackgroundResource(R.drawable.result_border)
-                                row.addView(nameText)
-
-                                // Kolom Status
-                                val statusText = TextView(this@ExamResultStudentActivity)
-                                statusText.text = exam.status
-                                statusText.setPadding(8, 8, 8, 8)
-                                statusText.setBackgroundResource(R.drawable.result_border)
-                                statusText.setTextColor(if (exam.status == "Not Competent") Color.RED else Color.GREEN)
-                                row.addView(statusText)
-
-                                // Kolom Skor Akhir
-                                val scoreText = TextView(this@ExamResultStudentActivity)
-                                scoreText.text = exam.final_score.toString()
-                                scoreText.setPadding(8, 8, 8, 8)
-                                scoreText.setBackgroundResource(R.drawable.result_border)
-                                row.addView(scoreText)
-
-                                // Tambahkan Row ke TableLayout
-                                tableLayout.addView(row)
-                            }
+                            val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+                            recyclerView.layoutManager = LinearLayoutManager(this@ExamResultStudentActivity)
+                            recyclerView.adapter = ExamResultAdapter(examList)
                         }
                     }
                 }

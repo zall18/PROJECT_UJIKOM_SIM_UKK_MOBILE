@@ -10,18 +10,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class BottomNavActivity : AppCompatActivity() {
+class BottomStudentActivity : AppCompatActivity() {
 
-    var homeFragment = HomeFragment();
-    var examinationFragment = ExaminationFragment()
-    var adminProfile = AdminProfile()
+    val homeStudentFragment = HomeStudentFragment()
+    val profileFragment = ProfileFragment()
     lateinit var session: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_bottom_nav)
+        setContentView(R.layout.activity_bottom_student)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -36,16 +35,12 @@ class BottomNavActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener {
                 item ->
             when(item.itemId){
-                R.id.nav_home -> {
-                    replaceFragment(homeFragment)
-                    true
-                }
-                R.id.nav_examination -> {
-                    replaceFragment(examinationFragment)
+                R.id.nav_student_home-> {
+                    replaceFragment(homeStudentFragment)
                     true
                 }
                 R.id.nav_profile -> {
-                    replaceFragment(adminProfile)
+                    replaceFragment(profileFragment)
                     true
                 }
                 else -> false
@@ -54,18 +49,14 @@ class BottomNavActivity : AppCompatActivity() {
 
         if (index == "0")
         {
-            replaceFragment(homeFragment)
+            replaceFragment(homeStudentFragment)
         }else if(index == "1")
         {
-            replaceFragment(examinationFragment)
+            replaceFragment(profileFragment)
             bottomNav.menu.findItem(R.id.nav_examination).isChecked = true
-        }else if(index == "2")
-        {
-            replaceFragment(adminProfile)
-            bottomNav.menu.findItem(R.id.nav_profile).isChecked = true
         }
-
     }
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }

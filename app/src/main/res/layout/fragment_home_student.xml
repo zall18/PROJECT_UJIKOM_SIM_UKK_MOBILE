@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeStudentFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello, Assessor!"
+                android:text="Hello, Student!"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:layout_marginTop="40dp"
@@ -31,7 +32,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thank you for your services:)"
+                android:text="Keep your spirit!"
                 android:textSize="12dp"
                 android:textStyle="bold"
                 />
@@ -63,26 +64,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="You have "
+                    android:text="See your exam result"
                     android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="12dp"
                     />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="12dp"
-                    android:textStyle="bold"
-                    android:id="@+id/home_competency_count"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" competency to view"
-                    android:textSize="12dp"
-                    android:textStyle="bold"
-                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,7 +104,8 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/student1"
+                        android:src="@drawable/baseline_assignment_24"
+                        app:tint="@color/blue"
                         />
 
                 </LinearLayout>
@@ -127,13 +115,13 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textSize="24dp"
-                    android:id="@+id/home_student"
+                    android:id="@+id/standard_count"
                     android:textStyle="bold"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Active Student"
+                    android:text="Competency Standard"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     />
@@ -168,7 +156,9 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/competitoranalysis1"
+                            android:src="@drawable/baseline_assignment_24"
+                            app:tint="@color/red"
+
                             />
 
                     </LinearLayout>
@@ -178,13 +168,13 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="20dp"
-                        android:id="@+id/home_compe"
+                        android:id="@+id/notcompetent_count"
                         android:textStyle="bold"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Competitor"
+                        android:text="Not Competent"
                         android:textSize="14dp"
                         android:textStyle="bold"
                         />
@@ -212,7 +202,9 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/average1"
+                            android:src="@drawable/baseline_assignment_24"
+                            app:tint="@color/green"
+
                             />
 
                     </LinearLayout>
@@ -223,12 +215,12 @@
                         android:text="0"
                         android:textSize="20dp"
                         android:textStyle="bold"
-                        android:id="@+id/home_avg"
+                        android:id="@+id/competent_count"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Avg Last Score"
+                        android:text="Competent"
                         android:textSize="14dp"
                         android:textStyle="bold"
 

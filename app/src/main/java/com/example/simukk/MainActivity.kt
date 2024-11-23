@@ -60,9 +60,15 @@ class MainActivity : AppCompatActivity() {
                             editor.putString("token", body?.token.toString())
                             editor.apply()
 
-                            var intent = Intent(applicationContext ,BottomNavActivity::class.java)
-                            intent.putExtra("index", "0")
-                            startActivity(intent)
+                            if (body?.role == "assessor"){
+                                var intent = Intent(applicationContext ,BottomNavActivity::class.java)
+                                intent.putExtra("index", "0")
+                                startActivity(intent)
+                            }else if(body?.role == "student"){
+                                var intent = Intent(applicationContext , BottomStudentActivity::class.java)
+                                intent.putExtra("index", "0")
+                                startActivity(intent)
+                            }
                         }else{
                             Toast.makeText(applicationContext, "Username and password not match", Toast.LENGTH_SHORT).show()
                         }

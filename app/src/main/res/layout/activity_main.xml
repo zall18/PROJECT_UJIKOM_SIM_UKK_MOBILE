@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +7,7 @@
     android:background="@drawable/gradient_bg"
     tools:context=".MainActivity">
 
+    <!-- Progress Bar -->
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +16,7 @@
         android:visibility="gone"
         />
 
+    <!-- Login Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,78 +26,120 @@
         android:layout_marginHorizontal="20dp"
         >
 
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_launcher_foreground"
+            android:contentDescription="App Logo"
+            android:layout_marginBottom="16dp"
+            android:tint="@color/white"
+            android:id="@+id/logo" />
 
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SIM UKK"
-            android:layout_marginBottom="12dp"
-            />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/title" />
 
+        <!-- Email Label -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email"
             android:textColor="@color/white"
             android:layout_marginBottom="8dp"
-            />
+            android:id="@+id/email_label" />
 
+        <!-- Email Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/light_blue"
+            app:hintTextColor="@color/white"
+            app:boxBackgroundColor="@color/cream">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="emailAddress"
-                android:hint="Email"
-                android:background="@drawable/rounded_input"
-                android:padding="12dp"
                 android:id="@+id/email_input"
+                android:hint="Enter your email"
+                android:background="@drawable/rounded_input"
                 android:inputType="textEmailAddress"
-                android:layout_marginBottom="12dp"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
+        <!-- Password Label -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"
             android:textColor="@color/white"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"
-            />
+            android:id="@+id/password_label" />
+
+        <!-- Password Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            >
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/light_blue"
+            app:hintTextColor="@color/white"
+            app:boxBackgroundColor="@color/cream"
+            app:passwordToggleEnabled="true">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input"
-                android:padding="12dp"
                 android:id="@+id/password_input"
+                android:hint="Enter your password"
+                android:background="@drawable/rounded_input"
                 android:inputType="textPassword"
-                android:autofillHints="password"
-                android:hint="Password"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-
+        <!-- Login Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_input"
+            android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
             android:textColor="@color/white"
-            android:text="login"
+            android:text="Login"
             android:layout_marginTop="20dp"
             android:id="@+id/button_login"
-            />
+            android:elevation="4dp"
+            android:paddingVertical="12dp" />
+
+        <!-- Register and Forgot Password -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textColor="@color/light_blue"
+                android:layout_marginRight="16dp"
+                android:id="@+id/register_link" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:textColor="@color/light_blue"
+                android:id="@+id/forgot_password_link" />
+        </LinearLayout>
 
     </LinearLayout>
-
 
 </RelativeLayout>

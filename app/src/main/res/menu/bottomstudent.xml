@@ -4,18 +4,13 @@
     <item
         android:icon="@drawable/baseline_home_24"
         android:title="Home"
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_student_home"
         />
-    <item
-        android:icon="@drawable/baseline_content_paste_24"
-        android:title="Examnation"
-        android:id="@+id/nav_examination"
-        />
+
     <item
         android:icon="@drawable/baseline_person_24"
         android:title="Profile"
         android:id="@+id/nav_profile"
         />
-
 
 </menu>
