@@ -1,21 +1,29 @@
 package com.example.simukk
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.simukk.Adapter.CompetencyStandardAdapter
+import com.example.simukk.Adapter.CompetencyStudentAdapter
 import com.example.simukk.Model.Student
 import com.example.simukk.Response.CompetencyStudentResponse
+import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 
 class AssessmentStudentActivity : AppCompatActivity() {
 
     lateinit var session: SharedPreferences
-    lateinit var studenModel: MutableList<Student>
-
+    lateinit var studentModel: MutableList<Student>
+    lateinit var studentAdapter: CompetencyStudentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +38,42 @@ class AssessmentStudentActivity : AppCompatActivity() {
         val standardId = intent.getStringExtra("standard_id")
         session = getSharedPreferences("session", Context.MODE_PRIVATE)
         val token = session.getString("token", "")
+        studentModel = mutableListOf<Student>()
+        val listview: ListView = findViewById(R.id.student_listview)
+
+        val back: ImageView = findViewById(R.id.back_assessmentStudent)
+        back.setOnClickListener {
+            startActivity(Intent(applicationContext, AssesmentActivity::class.java))
+        }
 
         if (standardId != null) {
             RetrofitClient.instance.competencyStudent("Bearer $token", standardId).enqueue(object :
-                Callback<CompetencyStudentResponse>)
+                Callback<CompetencyStudentResponse>{
+                override fun onResponse(
+                    call: Call<CompetencyStudentResponse>,
+                    response: Response<CompetencyStudentResponse>
+                ) {
+                    val body = response.body()
+                    Log.d("Assesment Response", "onResponse: $body")
+
+                    if (response.isSuccessful)
+                    {
+
+                        if (body != null)
+                        {
+                            studentModel = body.competitor
+                            studentAdapter = CompetencyStudentAdapter(applicationContext, studentModel, standardId)
+                            listview.adapter = studentAdapter
+                        }
+
+                    }
+                }
+
+                override fun onFailure(call: Call<CompetencyStudentResponse>, t: Throwable) {
+                    t.printStackTrace()
+                }
+                }
+            )
         }
 
     }

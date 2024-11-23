@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:padding="12dp"
         android:gravity="center_vertical"
-        android:id="@+id/compe_item"
+        android:id="@+id/student_item"
         android:layout_marginTop="12dp"
         >
         <LinearLayout
@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/exam1"
+                android:src="@drawable/student1"
                 />
 
         </LinearLayout>
@@ -37,7 +37,7 @@
             android:textSize="12dp"
             android:textStyle="bold"
             android:layout_marginLeft="12dp"
-            android:id="@+id/compe_title"
+            android:id="@+id/student_name"
             />
 
         <LinearLayout

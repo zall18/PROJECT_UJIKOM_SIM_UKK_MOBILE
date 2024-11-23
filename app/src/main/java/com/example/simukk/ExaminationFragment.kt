@@ -39,5 +39,13 @@ class ExaminationFragment : Fragment() {
             startActivity(Intent(requireContext(), AssesmentActivity::class.java))
         }
 
+        competencyStandard.setOnClickListener {
+            startActivity(Intent(requireContext(), StandardActivity::class.java))
+        }
+
+        examResult.setOnClickListener {
+            startActivity(Intent(requireContext(), ExamResultActivity::class.java))
+        }
+
     }
 }

@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.simukk.AssessmentStatusActivity
 import com.example.simukk.AssessmentStudentActivity
-import com.example.simukk.Model.Student
+import com.example.simukk.ExamResultStudentActivity
+import com.example.simukk.Model.CompetencyStandard
 import com.example.simukk.R
+import com.example.simukk.StandardElement
 
-class CompetencyStudentAdapter(val context: Context, val data: MutableList<Student>, val standard_id: String): BaseAdapter() {
+class ResultStandardAdapter(val context: Context, val data: MutableList<CompetencyStandard>): BaseAdapter() {
 
     val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -30,18 +31,17 @@ class CompetencyStudentAdapter(val context: Context, val data: MutableList<Stude
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = convertView ?: inflater.inflate(R.layout.studentitem, null, false)
+        val view = convertView ?: inflater.inflate(R.layout.competencyitem, null, false)
 
-        val name = view.findViewById<TextView>(R.id.student_name)
-        val item = view.findViewById<LinearLayout>(R.id.student_item)
+        val title = view.findViewById<TextView>(R.id.compe_title)
+        val item = view.findViewById<LinearLayout>(R.id.compe_item)
 
-        val data = getItem(position) as Student
+        val data = getItem(position) as CompetencyStandard
 
-        name.text = data.user.full_name
+        title.text = data.unit_title
         item.setOnClickListener {
-            val intent = Intent(context, AssessmentStatusActivity::class.java)
-            intent.putExtra("student_id", data.id.toString())
-            intent.putExtra("standard_id", standard_id)
+            val intent = Intent(context, ExamResultStudentActivity::class.java)
+            intent.putExtra("standard_id", data.id.toString())
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }

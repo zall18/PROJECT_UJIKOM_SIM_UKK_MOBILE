@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AssessmentStudentActivity">
-
+    tools:context=".ExamResultStudentActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,12 +28,12 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/left1"
-                    android:id="@+id/back_assessmentStudent"
+                    android:id="@+id/back_examresultstudent"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Assessment Student"
+                    android:text="Competency Standard"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:layout_weight="1"
@@ -72,7 +71,7 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/student1"
+                        android:src="@drawable/exam1"
                         />
 
                 </LinearLayout>
@@ -80,9 +79,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Student"
+                    android:text="Competency Standard"
                     android:textSize="16dp"
                     android:textStyle="bold"
+                    android:id="@+id/standard_title"
                     android:layout_marginTop="8dp"
                     />
 
@@ -91,31 +91,50 @@
             </LinearLayout>
 
             <ScrollView
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true"
-                android:layout_marginTop="12dp"
-                >
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <TableLayout
+                    android:id="@+id/tableLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1"
 
-                    <ListView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/student_listview"
-                        />
+                    android:padding="16dp">
 
-                </LinearLayout>
+                    <!-- Header Row -->
+                    <TableRow android:background="@drawable/result_border">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Student Name"
+                            android:padding="8dp"
+                            android:background="@drawable/result_border"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status"
+                            android:padding="8dp"
+                            android:background="@drawable/result_border"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Final Score"
+                            android:padding="8dp"
+                            android:textStyle="bold" />
+
+
+                    </TableRow>
+
+                </TableLayout>
 
             </ScrollView>
+
 
         </LinearLayout>
 
     </LinearLayout>
-
-
 </RelativeLayout>
