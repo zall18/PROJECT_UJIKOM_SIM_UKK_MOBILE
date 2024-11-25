@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@color/cream">
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -46,29 +45,40 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:layout_marginTop="12dp"
-            >
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/white">
 
-            <LinearLayout
+
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:fillViewport="true"
+                android:layout_marginTop="12dp"
                 >
 
-                <ListView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/es_listview"
-                    />
+                    android:orientation="vertical"
+                    >
 
-            </LinearLayout>
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/es_listview"
+                        />
 
-        </ScrollView>
+                </LinearLayout>
 
+            </ScrollView>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

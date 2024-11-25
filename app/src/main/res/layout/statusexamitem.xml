@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/cream">
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status: Competent"
-                android:textColor="@android:color/holo_green_dark"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:id="@+id/es_status"
                 android:background="@drawable/rounded_status"

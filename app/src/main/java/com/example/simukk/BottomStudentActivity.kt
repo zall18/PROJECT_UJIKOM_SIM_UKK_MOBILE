@@ -53,7 +53,7 @@ class BottomStudentActivity : AppCompatActivity() {
         }else if(index == "1")
         {
             replaceFragment(profileFragment)
-            bottomNav.menu.findItem(R.id.nav_examination).isChecked = true
+            bottomNav.menu.findItem(R.id.nav_profile).isChecked = true
         }
     }
 

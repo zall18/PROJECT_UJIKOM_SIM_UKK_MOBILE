@@ -11,10 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="20dp"
-        android:gravity="center_horizontal"
+        android:background="@color/white"
         >
-
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,111 +45,121 @@
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/baseline_person_24"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:layout_marginBottom="30dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            />
-
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:gravity="center_horizontal"
             >
 
-            <LinearLayout
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_person_24"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:layout_marginBottom="30dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:fillViewport="true"
                 >
-                <TextView
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Full Name"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="emailAddress"
-                    android:background="@drawable/rounded_input"
-                    android:padding="12dp"
-                    android:id="@+id/fn_input"
-                    android:layout_marginBottom="12dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Username"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="emailAddress"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:background="@drawable/rounded_input"
+                        android:padding="12dp"
+                        android:id="@+id/fn_input"
+                        android:layout_marginBottom="12dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Username"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
 
-                    android:background="@drawable/rounded_input"
-                    android:padding="12dp"
-                    android:id="@+id/un_input"
+                        android:background="@drawable/rounded_input"
+                        android:padding="12dp"
+                        android:id="@+id/un_input"
 
-                    android:layout_marginBottom="12dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="emailAddress"
+                        android:layout_marginBottom="12dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
 
-                    android:background="@drawable/rounded_input"
-                    android:padding="12dp"
-                    android:id="@+id/email_input"
+                        android:background="@drawable/rounded_input"
+                        android:padding="12dp"
+                        android:id="@+id/email_input"
 
-                    android:layout_marginBottom="12dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Phone"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="emailAddress"
+                        android:layout_marginBottom="12dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Phone"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
 
-                    android:background="@drawable/rounded_input"
-                    android:padding="12dp"
-                    android:id="@+id/phone_input"
+                        android:background="@drawable/rounded_input"
+                        android:padding="12dp"
+                        android:id="@+id/phone_input"
 
-                    android:layout_marginBottom="12dp"
-                    />
+                        android:layout_marginBottom="12dp"
+                        />
 
-            </LinearLayout>
+                </LinearLayout>
 
-        </ScrollView>
+            </ScrollView>
 
 
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

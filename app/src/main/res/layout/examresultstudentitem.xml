@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
+    android:layout_marginVertical="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     android:backgroundTint="@color/white">
@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/exam1"
+            android:src="@drawable/student1"
             android:contentDescription="Profile Icon"
             android:layout_marginEnd="16dp" />
 

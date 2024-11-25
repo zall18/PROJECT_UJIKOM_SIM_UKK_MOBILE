@@ -2,6 +2,7 @@ package com.example.simukk.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,12 @@ class StudentExamResultAdapter(val context: Context, val data: MutableList<Statu
         standard.text = data.unit_title
         finalScore.text = "Final Score: " + data.final_score
         status.text = data.status
+        if (data.status == "Not Competent") {
+            status.setBackgroundResource(R.drawable.rounded_status_red)
+        } else {
+            status.setBackgroundResource(R.drawable.rounded_status)
+        }
+
 
         return view
     }

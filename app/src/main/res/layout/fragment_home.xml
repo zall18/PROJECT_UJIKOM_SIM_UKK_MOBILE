@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cream"
+        android:background="@color/white"
         >
 
         <LinearLayout
@@ -44,18 +45,21 @@
                 android:padding="12dp"
                 android:gravity="center_vertical"
                 android:layout_marginTop="100dp"
+                android:backgroundTint="@color/light_blue"
                 >
                 <LinearLayout
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/home_rounded"
                     android:gravity="center"
+                    android:backgroundTint="@color/blue"
                     >
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/exam1"
+                        app:tint="@color/white"
                         />
 
                 </LinearLayout>
@@ -67,6 +71,7 @@
                     android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="12dp"
+                    android:textColor="@color/white"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -74,6 +79,7 @@
                     android:text="0"
                     android:textSize="12dp"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/home_competency_count"
                     />
                 <TextView
@@ -82,6 +88,7 @@
                     android:text=" competency to view"
                     android:textSize="12dp"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,6 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_navigate_next_24"
+                        app:tint="@color/white"
                         />
                 </LinearLayout>
 
@@ -105,6 +113,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
+                android:backgroundTint="@color/light_blue"
                 >
 
                 <LinearLayout
@@ -112,12 +121,14 @@
                     android:layout_height="60dp"
                     android:background="@drawable/home_rounded"
                     android:gravity="center"
+                    android:backgroundTint="@color/blue"
                     >
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/student1"
+                        app:tint="@color/white"
                         />
 
                 </LinearLayout>
@@ -129,6 +140,7 @@
                     android:textSize="24dp"
                     android:id="@+id/home_student"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -136,6 +148,7 @@
                     android:text="Active Student"
                     android:textSize="16dp"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     />
 
             </LinearLayout>
@@ -156,6 +169,7 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:layout_marginRight="6dp"
+                    android:backgroundTint="@color/light_blue"
                     >
 
                     <LinearLayout
@@ -163,12 +177,15 @@
                         android:layout_height="40dp"
                         android:background="@drawable/home_rounded"
                         android:gravity="center"
+                        android:backgroundTint="@color/blue"
                         >
 
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/competitoranalysis1"
+                            app:tint="@color/white"
+
                             />
 
                     </LinearLayout>
@@ -180,6 +197,7 @@
                         android:textSize="20dp"
                         android:id="@+id/home_compe"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -187,6 +205,7 @@
                         android:text="Competitor"
                         android:textSize="14dp"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         />
 
                 </LinearLayout>
@@ -200,6 +219,7 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:layout_marginLeft="6dp"
+                    android:backgroundTint="@color/light_blue"
                     >
 
                     <LinearLayout
@@ -207,12 +227,14 @@
                         android:layout_height="40dp"
                         android:background="@drawable/home_rounded"
                         android:gravity="center"
+                        android:backgroundTint="@color/blue"
                         >
 
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/average1"
+                            app:tint="@color/white"
                             />
 
                     </LinearLayout>
@@ -224,6 +246,7 @@
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:id="@+id/home_avg"
+                        android:textColor="@color/white"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -231,6 +254,7 @@
                         android:text="Avg Last Score"
                         android:textSize="14dp"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
 
                         />
 

@@ -60,6 +60,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
+                android:backgroundTint="@color/blue"
                 >
 
                 <LinearLayout
@@ -67,12 +68,15 @@
                     android:layout_height="60dp"
                     android:background="@drawable/home_rounded"
                     android:gravity="center"
+                    android:backgroundTint="@color/light_blue"
                     >
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/exam1"
+                        app:tint="@color/white"
+
                         />
 
                 </LinearLayout>
@@ -83,6 +87,7 @@
                     android:text="Competency Standard"
                     android:textSize="16dp"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:layout_marginTop="8dp"
                     />
 
