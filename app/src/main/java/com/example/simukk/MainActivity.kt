@@ -67,18 +67,23 @@ class MainActivity : AppCompatActivity() {
                         if (response.isSuccessful){
                             Log.d("Login Response", "onResponse: " + response.body())
                             var body = response.body()
-                            Toast.makeText(applicationContext, "Success to login!", Toast.LENGTH_SHORT).show()
                             editor.putString("token", body?.token.toString())
                             editor.apply()
 
                             if (body?.role == "assessor"){
+                                Toast.makeText(applicationContext, "Success to login!", Toast.LENGTH_SHORT).show()
+
                                 var intent = Intent(applicationContext ,BottomNavActivity::class.java)
                                 intent.putExtra("index", "0")
                                 startActivity(intent)
                             }else if(body?.role == "student"){
+                                Toast.makeText(applicationContext, "Success to login!", Toast.LENGTH_SHORT).show()
+
                                 var intent = Intent(applicationContext , BottomStudentActivity::class.java)
                                 intent.putExtra("index", "0")
                                 startActivity(intent)
+                            }else{
+                                Toast.makeText(applicationContext, "Sorry you don't have access to this app", Toast.LENGTH_SHORT).show()
                             }
                         }else{
                             Toast.makeText(applicationContext, "Username and password not match", Toast.LENGTH_SHORT).show()
