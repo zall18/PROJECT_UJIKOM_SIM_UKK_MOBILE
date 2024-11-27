@@ -8,10 +8,19 @@
     android:background="@color/white"
     tools:context=".StudentProfile">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:id="@+id/content"
         >
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"

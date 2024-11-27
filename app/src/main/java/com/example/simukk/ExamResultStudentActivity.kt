@@ -5,7 +5,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -40,12 +43,15 @@ class ExamResultStudentActivity : AppCompatActivity() {
         val token = session.getString("token", "")
         val standard_id = intent.getStringExtra("standard_id")
         val unit_title: TextView = findViewById(R.id.standard_title)
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
 
         val back: ImageView = findViewById(R.id.back_examresultstudent)
         back.setOnClickListener {
             startActivity(Intent(applicationContext, ExamResultActivity::class.java))
         }
-
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
         if (standard_id != null)
         {
             RetrofitClient.instance.ExamResult("Bearer $token", standard_id).enqueue(object :
@@ -54,6 +60,8 @@ class ExamResultStudentActivity : AppCompatActivity() {
                     call: Call<ExamResultResponse>,
                     response: Response<ExamResultResponse>
                 ) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     if (response.isSuccessful) {
                         val data = response.body()?.exam_result
                         unit_title.text = response.body()?.unit_title;
@@ -68,6 +76,8 @@ class ExamResultStudentActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<ExamResultResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     t.printStackTrace()
                 }
                 })

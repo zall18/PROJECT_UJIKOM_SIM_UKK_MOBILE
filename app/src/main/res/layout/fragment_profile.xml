@@ -5,123 +5,133 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-
-        android:background="@color/white">
-
-
-
-        <!-- User Information -->
+        >
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="40dp">
+            android:id="@+id/content"
+            android:background="@color/white">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/baseline_person_24"
-                android:layout_marginTop="20dp"
-                />
 
-            <TextView
-                android:layout_width="wrap_content"
+
+            <!-- User Information -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rizal Satoru"
-                android:textStyle="bold"
-                android:textColor="@color/blue"
-                android:textSize="20sp"
-                android:id="@+id/name_profile"
-                android:layout_marginBottom="8dp" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="40dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rizal Satoru"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:id="@+id/name_profile"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NISN: 12345678"
+                    android:textColor="@color/blue"
+                    android:id="@+id/nisn_profile"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Profile Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NISN: 12345678"
-                android:textColor="@color/blue"
-                android:id="@+id/nisn_profile"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/light_blue"
+                android:padding="12dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:id="@+id/edit_profile">
 
-        <!-- Profile Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/rounded_corner"
-            android:backgroundTint="@color/light_blue"
-            android:padding="12dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="40dp"
-            android:id="@+id/edit_profile">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/baseline_person_24"
+                    app:tint="@color/white"
+                    android:layout_marginRight="16dp" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/baseline_person_24"
-                app:tint="@color/white"
-                android:layout_marginRight="16dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profil"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/baseline_navigate_next_24"
+                    app:tint="@color/white"
+                    />
+            </LinearLayout>
+
+            <!-- Exam Result Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Profil"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:textSize="16sp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/light_blue"
+                android:padding="12dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="12dp"
+                android:id="@+id/exam_result">
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/baseline_navigate_next_24"
-                app:tint="@color/white"
-                 />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/baseline_school_24"
+                    app:tint="@color/white"
+                    android:layout_marginRight="16dp" />
 
-        <!-- Exam Result Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/rounded_corner"
-            android:backgroundTint="@color/light_blue"
-            android:padding="12dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="12dp"
-            android:id="@+id/exam_result">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hasil Ujian"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:textSize="16sp" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/baseline_school_24"
-                app:tint="@color/white"
-                android:layout_marginRight="16dp" />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/baseline_navigate_next_24"
+                    app:tint="@color/white"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hasil Ujian"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/baseline_navigate_next_24"
-                app:tint="@color/white"
-
-                 />
-        </LinearLayout>
-        <LinearLayout
+                    />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -151,6 +161,7 @@
             </LinearLayout>
 
 
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

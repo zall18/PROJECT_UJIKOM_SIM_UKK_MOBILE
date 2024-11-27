@@ -5,8 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -41,6 +44,8 @@ class AssessmentStatusActivity : AppCompatActivity() {
         var token = session.getString("token", "")
         val listview: ListView = findViewById(R.id.ele_listview)
         elementModel = mutableListOf<ElementStatus>()
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
 
         val back: ImageView = findViewById(R.id.back_assessmentStatus)
         back.setOnClickListener {
@@ -49,7 +54,13 @@ class AssessmentStatusActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         if (standard_id != null && student_id != null){
+
+
+            progressBar.visibility = View.VISIBLE
+            content.visibility = View.GONE
             RetrofitClient.instance.elementStatus("Bearer $token", standard_id, student_id).enqueue(object :
                 Callback<ElementStatusResponse>{
                 override fun onResponse(
@@ -58,6 +69,8 @@ class AssessmentStatusActivity : AppCompatActivity() {
                 ) {
                     val body = response.body()
                     Log.d("Element Status Response", "onResponse: $body")
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
 
                     if (response.isSuccessful)
                     {
@@ -76,6 +89,8 @@ class AssessmentStatusActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<ElementStatusResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     t.printStackTrace()
                 }
                 })

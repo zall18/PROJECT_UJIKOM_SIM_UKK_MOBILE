@@ -5,8 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -39,6 +42,12 @@ class StudentExamResultActivity : AppCompatActivity() {
         val listview: ListView = findViewById(R.id.es_listview)
         summaryModel = mutableListOf<StatusSummary>()
 
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
+
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
+
         RetrofitClient.instance.studentExamResult(token).enqueue(object :
             Callback<StudentExamResultResponse>{
             override fun onResponse(
@@ -47,7 +56,8 @@ class StudentExamResultActivity : AppCompatActivity() {
             ) {
                 val body = response.body()
                 Log.d("Exam Result Response", "onResponse: $body")
-
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 if (response.isSuccessful)
                 {
 
@@ -61,6 +71,8 @@ class StudentExamResultActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<StudentExamResultResponse>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 t.printStackTrace()
             }
             })

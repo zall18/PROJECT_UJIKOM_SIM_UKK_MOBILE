@@ -5,8 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -37,6 +40,8 @@ class ExamResultActivity : AppCompatActivity() {
 
         val session = getSharedPreferences("session", Context.MODE_PRIVATE)
         val token = session.getString("token", "")
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
 
         competencyModel = mutableListOf<CompetencyStandard>()
         val listview: ListView = findViewById(R.id.assessment_listview)
@@ -47,7 +52,8 @@ class ExamResultActivity : AppCompatActivity() {
             intent.putExtra("index", "1")
             startActivity(intent)
         }
-
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
         RetrofitClient.instance.competencyStandard("Bearer $token").enqueue(object :
             Callback<ComeptencyStandardResponse> {
             override fun onResponse(
@@ -56,7 +62,8 @@ class ExamResultActivity : AppCompatActivity() {
             ) {
                 val body = response.body()
                 Log.d("Assesment Response", "onResponse: $body")
-
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 if (response.isSuccessful)
                 {
 
@@ -70,6 +77,9 @@ class ExamResultActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ComeptencyStandardResponse>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
+
                 t.printStackTrace()
             }
         }

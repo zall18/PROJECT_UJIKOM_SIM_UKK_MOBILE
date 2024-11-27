@@ -5,8 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -40,6 +43,8 @@ class AssessmentStudentActivity : AppCompatActivity() {
         val token = session.getString("token", "")
         studentModel = mutableListOf<Student>()
         val listview: ListView = findViewById(R.id.student_listview)
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
 
         val back: ImageView = findViewById(R.id.back_assessmentStudent)
         back.setOnClickListener {
@@ -47,6 +52,8 @@ class AssessmentStudentActivity : AppCompatActivity() {
         }
 
         if (standardId != null) {
+            progressBar.visibility = View.VISIBLE
+            content.visibility = View.GONE
             RetrofitClient.instance.competencyStudent("Bearer $token", standardId).enqueue(object :
                 Callback<CompetencyStudentResponse>{
                 override fun onResponse(
@@ -55,7 +62,8 @@ class AssessmentStudentActivity : AppCompatActivity() {
                 ) {
                     val body = response.body()
                     Log.d("Assesment Response", "onResponse: $body")
-
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     if (response.isSuccessful)
                     {
 
@@ -70,6 +78,8 @@ class AssessmentStudentActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<CompetencyStudentResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     t.printStackTrace()
                 }
                 }

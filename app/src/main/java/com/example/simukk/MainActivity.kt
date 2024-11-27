@@ -5,13 +5,17 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.transition.Visibility
 import com.example.simukk.Request.LoginRequest
 import com.example.simukk.Response.LoginResponse
 import retrofit2.Call
@@ -38,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         session = getSharedPreferences("session", Context.MODE_PRIVATE)
         var editor = session.edit()
 
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
+
         login.setOnClickListener {
             if (email.text.isNullOrEmpty())
             {
@@ -46,6 +53,8 @@ class MainActivity : AppCompatActivity() {
             {
                 password.error = "This field is required"
             }else{
+                progressBar.visibility = View.VISIBLE
+                content.visibility = View.GONE
                 var loginRequest = LoginRequest(email.text.toString(), password.text.toString())
                 RetrofitClient.instance.loginRoute(loginRequest).enqueue(object :
                     Callback<LoginResponse>{
@@ -53,6 +62,8 @@ class MainActivity : AppCompatActivity() {
                         call: Call<LoginResponse>,
                         response: Response<LoginResponse>
                     ) {
+                        progressBar.visibility = View.GONE
+                        content.visibility = View.VISIBLE
                         if (response.isSuccessful){
                             Log.d("Login Response", "onResponse: " + response.body())
                             var body = response.body()
@@ -75,9 +86,12 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        progressBar.visibility = View.GONE
+                        content.visibility = View.VISIBLE
                         t.printStackTrace()
                     }
                     })
+
 
             }
         }

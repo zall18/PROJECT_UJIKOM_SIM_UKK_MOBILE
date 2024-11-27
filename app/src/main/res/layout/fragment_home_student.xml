@@ -11,14 +11,22 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         >
-
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingHorizontal="26dp"
             android:paddingVertical="24dp"
+            android:id="@+id/content"
             >
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,6 +54,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginTop="100dp"
                 android:backgroundTint="@color/light_blue"
+                android:id="@+id/view_resutl"
                 >
                 <LinearLayout
                     android:layout_width="40dp"

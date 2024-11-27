@@ -5,8 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -47,6 +50,12 @@ class StandardElement : AppCompatActivity() {
             startActivity(Intent(applicationContext, StandardActivity::class.java))
         }
 
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
+
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
+
         if (standard_id != null)
         {
             RetrofitClient.instance.StandardElement("Bearer $token", standard_id).enqueue(object :
@@ -57,6 +66,8 @@ class StandardElement : AppCompatActivity() {
                 ) {
                     val body = response.body()
                     Log.d("Competency Response", "onResponse: $body")
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
 
                     if (response.isSuccessful)
                     {
@@ -70,6 +81,8 @@ class StandardElement : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<StandardElementResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     t.printStackTrace()
                 }
                 }

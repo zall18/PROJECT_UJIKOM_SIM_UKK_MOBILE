@@ -5,7 +5,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,11 +38,18 @@ class AssessorProfileActivity : AppCompatActivity() {
         val username: TextView = findViewById(R.id.un_input)
         val email: TextView = findViewById(R.id.email_input)
         val phone: TextView = findViewById(R.id.phone_input)
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
 
+
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
         RetrofitClient.instance.me(token).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 val body = response.body()
                 Log.d("Me Response", "onResponse: $body")
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 if (response.isSuccessful){
                     if (body != null){
                         fullName.text = body.full_name
@@ -52,6 +62,8 @@ class AssessorProfileActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 t.printStackTrace()
             }
         })

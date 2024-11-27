@@ -1,6 +1,7 @@
 package com.example.simukk
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.simukk.Response.StudentHomeResponse
 import retrofit2.Call
@@ -41,6 +44,11 @@ class HomeStudentFragment : Fragment() {
         val competentCount: TextView = view.findViewById(R.id.competent_count)
         val session = requireContext().getSharedPreferences("session", Context.MODE_PRIVATE)
         val token = "Bearer " + session.getString("token", "")
+        val progressBar: ProgressBar = view.findViewById(R.id.progress_bar)
+        val content: LinearLayout = view.findViewById(R.id.content)
+
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
 
         RetrofitClient.instance.studentHome(token).enqueue(object : Callback<StudentHomeResponse>{
             override fun onResponse(
@@ -49,6 +57,8 @@ class HomeStudentFragment : Fragment() {
             ) {
                 val body = response.body()
                 Log.d("Student Home Response", "onResponse: $body")
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 if (response.isSuccessful){
                     if (body != null){
 
@@ -61,9 +71,17 @@ class HomeStudentFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<StudentHomeResponse>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 t.printStackTrace()
             }
         })
+
+        val viewResult: LinearLayout = view.findViewById(R.id.view_resutl)
+
+        viewResult.setOnClickListener {
+            startActivity(Intent(requireContext(), StudentExamResultActivity::class.java))
+        }
 
     }
 }

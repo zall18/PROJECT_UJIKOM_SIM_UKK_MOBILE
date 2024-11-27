@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.simukk.Model.User
 import com.example.simukk.Response.LogoutResponse
@@ -44,10 +45,19 @@ class ProfileFragment : Fragment() {
         val examResutl: LinearLayout = view.findViewById(R.id.exam_result)
         val profile: LinearLayout = view.findViewById(R.id.edit_profile)
 
+        val progressBar: ProgressBar = view.findViewById(R.id.progress_bar)
+        val content: LinearLayout = view.findViewById(R.id.content)
+
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
+
+
         RetrofitClient.instance.me(token).enqueue(object : Callback<User>{
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 val body = response.body()
                 Log.d("Me Response", "onResponse: $body")
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 if (response.isSuccessful){
                     name.text = body?.full_name
                     nisn.text = "NISN: " + body?.student?.nisn.toString()
@@ -56,6 +66,8 @@ class ProfileFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 t.printStackTrace()
             }
         })
@@ -70,17 +82,23 @@ class ProfileFragment : Fragment() {
 
         val logout: LinearLayout = view.findViewById(R.id.logout)
         logout.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            content.visibility = View.GONE
             RetrofitClient.instance.logout(token).enqueue(object : Callback<LogoutResponse>{
                 override fun onResponse(
                     call: Call<LogoutResponse>,
                     response: Response<LogoutResponse>
                 ) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     if (response.isSuccessful){
                         startActivity(Intent(requireContext(), MainActivity::class.java))
                     }
                 }
 
                 override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     t.printStackTrace()
                 }
             })

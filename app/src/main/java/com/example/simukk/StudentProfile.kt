@@ -5,8 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +43,11 @@ class StudentProfile : AppCompatActivity() {
         val nisn: TextView = findViewById(R.id.nisn_input)
         val grade: TextView = findViewById(R.id.gl_input)
         val major: TextView = findViewById(R.id.major_input)
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val content: LinearLayout = findViewById(R.id.content)
+
+        progressBar.visibility = View.VISIBLE
+        content.visibility = View.GONE
 
         RetrofitClient.instance.studentProfile(token).enqueue(object :
             Callback<StudentProfileResponse>{
@@ -49,6 +57,8 @@ class StudentProfile : AppCompatActivity() {
             ) {
                 val body = response.body()
                 Log.d("Profile Response", "onResponse: $body")
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 if (response.isSuccessful){
                     if (body != null){
                         fullName.text = body.user.full_name
@@ -64,6 +74,8 @@ class StudentProfile : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<StudentProfileResponse>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                content.visibility = View.VISIBLE
                 t.printStackTrace()
             }
             })
